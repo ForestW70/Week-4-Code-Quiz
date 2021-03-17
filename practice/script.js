@@ -4,51 +4,93 @@ const startButton = document.getElementById("start");
 const answCont = document.getElementById("answerButtons");
 const startBtn = document.getElementById("startButton");
 const nextBtn = document.getElementById("nextButton");
+const scoreValue = document.getElementById("score");
+const timerValue = document.getElementById("timer");
+const intro = document.getElementById("intro");
 
 let index = 0;
+let score = 0;
+let timer = 75;
+let isCorrect = false;
+let interval;
 
 
 
 startBtn.addEventListener("click", startGame);
 
 function startGame() {
-    console.log("hello");
+    intro.classList.add("hide");
     startBtn.classList.add("hide");
     nextBtn.classList.remove("hide");
-
-    let questionEl = document.createElement("div");
-    let answerGrid = document.createElement("div");
-    
-    questionEl.innerHTML = questions[0].question;
-
-    questionCont.append(questionEl);
-    questionCont.append(answerGrid);
-    
     createAnswers();
+    interval = window.setInterval(timerFunk, 1000) 
+}
+
+function timerFunk() {
+    timer--;
+    timerValue.innerText = timer > 0 ? timer : 0;
+    if (timer <= 0) {
+
+        createEndScreen();
+        clearInterval(interval);
+    }
+
 }
 
 function createAnswers() {
+    let questionEl = document.createElement("div");
+    let answerGrid = document.createElement("div");
+    questionEl.innerHTML = questions[index].question;
+    questionCont.append(questionEl);
+    questionCont.append(answerGrid);
+    
     for (let i = 0; i < 4; i++) {
         let answerBtn = document.createElement("button")
         answerBtn.innerText = questions[index].answers[i];
+        answerBtn.setAttribute("name", i);
         questionCont.append(answerBtn);
-        
+        answerBtn.addEventListener("click", handleClick);
     }
+
 }
+
+function handleClick (e) {
+    console.log(e.target.name);
+    if (e.target.name == questions[index].correctAnswer) {
+        e.target.classList.add("correct");
+        isCorrect = true;
+        score += 100;
+        scoreValue.innerText = score;
+        e.target.setAttribute("disabled", true);
+    } else {
+        timer -= 5; 
+        timerValue.innerText = timer > 0 ? timer : 0;
+
+        isCorrect = false; 
+    }
+    
+    
+}
+
+
 
 nextBtn.addEventListener("click", setNextQuestion);
 
 function setNextQuestion() {
+    if (index + 1 === questions.length) {
+        // createEndScreen();
+        console.log("hello");
     
-    index++;
-    let questionEl = document.createElement("div");
-    let answerGrid = document.createElement("div");
+    } else if (isCorrect) {
+        questionCont.innerHTML = '';
+        index++;
+        createAnswers(index);
+        isCorrect = false;
+    }
+}
 
-    questionEl.innerText = questions[index].question;
-    questionCont.append(questionEl);
-    questionCont.append(answerGrid);
-    createAnswers(index);
-
+function createEndScreen() {
+    
 }
 
 
@@ -95,31 +137,3 @@ const questions = [
         correctAnswer: 1
     }
 ]
-
-
-
-// const question = questions[pointer];
-// buildQuestion(question);
-
-// onClick = {handleClick}
-// onClick = {() => handleClick(label)}
-
-
-// handle = (e) => {
-//     if (e.target.name === question[0].correctAnswer)
-// }
-
-
-// <button name="a">answer a</button>
-
-// [1,2,3].forEach((val) =>  console.log(val))
-// const t = [1,2,3].map((val) => 1)
-// [1,1,1]
-
-// answers.forEach((val, idx) => {
-//     const element = document.createElement("Button");
-//     element.innerText = val;
-//     element.name = idx;
-//     element.addEventListener("click", handleclick)
-//     //container.append(element)
-// })
