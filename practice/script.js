@@ -5,7 +5,8 @@ const nextBtn = document.getElementById("nextButton");
 const scoreValue = document.getElementById("score");
 const timerValue = document.getElementById("timer");
 const intro = document.getElementById("greeting");
-const progressCont = document.getElementById("quizProgress")
+const progressCont = document.getElementById("quizProgress");
+const hiscoreCont = document.getElementById("hiscore");
 
 
 // setting up variables that will be tracked and used later on
@@ -164,17 +165,23 @@ function createEndScreen() {
 function setHiscore() {
 
     const highScore = JSON.parse(localStorage.getItem("currentHiscore"));
-    if (!highScore || score >= Number.parseInt(highScore.hiscore)) {
+    if (!highScore || score >= Number.parseInt(highScore.score)) {
         let currentHiscore = {
             name: document.getElementById("hiscoreName").value,
-            hiscore: score
+            score: score
         };
 
         localStorage.setItem("currentHiscore", JSON.stringify(currentHiscore));
-        // let leaderBoard = JSON.parse(localStorage.getItem("currentHiscore"));
-
-        document.getElementById("hiscore").innerHTML = `<h3>${currentHiscore.name}</h3><span>${currentHiscore.hiscore}</span>`;
     }
+    location.reload();
+}
+
+
+if (localStorage.getItem("currentHiscore")) {
+    hiscoreCont.setAttribute("class", "you-did-it");
+    let showName = JSON.parse(localStorage.getItem("currentHiscore")).name;
+    let showScore = JSON.parse(localStorage.getItem("currentHiscore")).score;
+    document.getElementById("hiscore").innerHTML = `<span>Current Hiscore:</span><h2>${showName}</h2><span>score: ${showScore}</span>`;
 }
 
 
