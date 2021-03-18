@@ -4,50 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Quiz Challenge</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="./assets/css/styles.css" rel="stylesheet">
+    <link href="https://images-na.ssl-images-amazon.com/images/I/71aO3lHbMML._AC_SL1024_.jpg" rel="icon">
+    <title>Coding Quiz</title>
 </head>
 
 
 <body>
-    <header>
-        <div id="highscore-container" class="inline">
-            <a href="https://soundcloud.com/stream">View Leaderboard</a>
 
+    <section id="container">
+
+        <h1 id="greeting" class="greeting">
+            Welcome to the code quiz! Are you ready to test your knowledge?
+        </h1>
+
+        <!-- empty div where I will load quiz -->
+        <div id="questionContainer"></div>
+        
+        <div class="controls">
+            <button id="startButton" class="ctrl-btn">Start</button>
+            <button id="nextButton" class="ctrl-btn hide">Next</button>
         </div>
+        
+    </section>
 
-        <div id="timer-container" class="inline">
-            <span>75</span>
+    <section id="quizProgress" class="quiz-progress hide">
 
-        </div>
-    </header>
-
-
-
-    <section id="quiz-container" class="flex-colm">
         <div>
-            <h1>Coding Quiz Challenge</h1>
+            <strong>Score</strong>
+            <span id="score">0</span>
+        </div>
 
-            <p>
-                So you want to quiz yourself about coding? Well, lets see how knowledgeable you are!
-            </p>
-
-            <!-- <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id qui ipsum facilis placeat, quas libero? Dolorum impedit totam expedita dolores consequuntur repellendus error numquam nihil reprehenderit harum obcaecati a quasi, eos fugit deleniti aspernatur inventore iste sapiente at. At pariatur fuga ullam, unde id eveniet incidunt! Sint aperiam voluptas, minima culpa atque, alias at quis voluptates laborum eius dignissimos illum, debitis corporis accusamus illo a corrupti reprehenderit incidunt? Velit porro qui, deserunt ut eos quidem?
-            </p> -->
-
-            <button id="start-button">Start Quiz</button>
+        <div>
+            <strong>Time Left</strong>
+            <span id="timer">75</span>
         </div>
 
     </section>
 
-
-
-
-
+    <section id="hiscore" class="hide"></section>
 
 </body>
-
 <script src="./assets/js/script.js"></script>
-
 </html>
