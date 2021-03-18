@@ -34,12 +34,13 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     padding: 15px;
-    border-top: 5px double red;
+    border-top: 7px double #727726;
     margin-top: 5px;
 }
 
 .btn {
     font-family: 'PT Serif', serif;
+    opacity: 0.6;
 }
 
 .controls {
@@ -48,6 +49,7 @@ body {
 
 .ctrl-btn {
     font-size: larger;
+    font-family: 'PT Serif', serif;
 }
 
 .correct {
@@ -99,6 +101,12 @@ body {
     justify-content: center;
     font-family: 'Roboto Mono', monospace;
     padding: 0 20px;
+}
+
+.hover-effect:hover {
+    opacity: 0.9;
+    
+    box-shadow: 0 0 10px rgb(220, 235, 23);
 }
 
 

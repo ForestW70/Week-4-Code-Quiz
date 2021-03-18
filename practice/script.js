@@ -1,7 +1,5 @@
+// defining my paths by getting ID's
 const questionCont = document.getElementById("questionContainer");
-const question = document.getElementById("questionText");
-const startButton = document.getElementById("start");
-const answCont = document.getElementById("answerButtons");
 const startBtn = document.getElementById("startButton");
 const nextBtn = document.getElementById("nextButton");
 const scoreValue = document.getElementById("score");
@@ -9,6 +7,7 @@ const timerValue = document.getElementById("timer");
 const intro = document.getElementById("greeting");
 const progressCont = document.getElementById("quizProgress")
 
+// setting up variables that will be tracked and used later on
 let index = 0;
 let score = 0;
 let timer = 75;
@@ -43,6 +42,7 @@ function createAnswers() {
         answerBtn.innerText = questions[index].answers[i];
         answerBtn.setAttribute("name", i);
         answerBtn.setAttribute("class", "btn");
+        answerBtn.classList.add("hover-effect");
         answerGrid.append(answerBtn);
         answerBtn.addEventListener("click", handleClick);
     }
@@ -112,6 +112,7 @@ function createEndScreen() {
     hiscoreLabel.setAttribute("for", "hiscore");
     hiscoreInput.setAttribute("type", "text");
     hiscoreInput.setAttribute("id", "hiscore");
+    hiscoreInput.setAttribute("name", "hiscore");
     submit.setAttribute("type", "submit");
     submit.setAttribute("value", "submit");
 
@@ -139,7 +140,7 @@ function setHiscore() {
     };
 
     localStorage.setItem("highscore", JSON.stringify(currentHiscore));
-    let leaderBoard = Json.parse(localStorage.getItem("currentHiscore"));
+    let leaderBoard = JSON.parse(localStorage.getItem("currentHiscore"));
 
     
     document.getElementById("hiscore").innerHTML = `<h3>${leaderBoard.name}</h3><span>${leaderBoard.highscore}</span>`;
@@ -152,34 +153,130 @@ function setHiscore() {
 
 const questions = [
     {
-        question: "who was the best president?",
+        question: "What does the 'h' stand for in HTML?",
         answers: [
-            "James buchanan",
-            "George Bush",
-            "the other Geroge Bush",
-            "monicaaaaaaa"
+            "Hyper",
+            "Hearty",
+            "Herman's",
+            "Head"
         ],
         correctAnswer: 0
     
     },
     {
-        question: "what is my fav food?",
+        question: "What is the first indexed value of an array in JavaScript?",
         answers: [
-            "chip",
-            "burger",
-            "fry",
-            "hut dog"
+            "1",
+            "-1",
+            "0",
+            "3 fitty"
         ],
         correctAnswer: 2
 
     },
     {
-        question: "what is the first code?",
+        question: "What type of language is CSS?",
         answers: [
-            "010101",
-            "HTML",
-            "ATML",
-            "C+++++++++"
+            "Programming language",
+            "Style Sheet language",
+            "Markup language",
+            "French"
+        ],
+        correctAnswer: 1
+    },
+    {
+        question: "Which of the following is not a valid 'type' when creating an event listener?",
+        answers: [
+            "Click",
+            "Mouse Up",
+            "Key Down",
+            "Clack"
+        ],
+        correctAnswer: 3
+    
+    },
+    {
+        question: "What port does a browser assume when you use an https link?",
+        answers: [
+            "1",
+            "80",
+            "443",
+            "5000"
+        ],
+        correctAnswer: 2
+
+    },
+    {
+        question: "Who is the inventor of Git?",
+        answers: [
+            "Lief Tortelini",
+            "Linus Torvalds",
+            "Tinus Lorvalds",
+            "Besteman Besteman Besteman"
+        ],
+        correctAnswer: 1
+    },
+    {
+        question: "Which of the following is not an HTML element?",
+        answers: [
+            "<heading>",
+            "<legend>",
+            "<tr>",
+            "<sup>"
+        ],
+        correctAnswer: 0
+    
+    },
+    {
+        question: "What are the values called that you use inside of a JavaScript function()?",
+        answers: [
+            "Variables",
+            "Values",
+            "Arguments",
+            "Squabbles"
+        ],
+        correctAnswer: 2
+
+    },
+    {
+        question: "Which of the following features can not be found in Chrome's inspect feature?",
+        answers: [
+            "Elements",
+            "Free Parking",
+            "Console",
+            "Sources"
+        ],
+        correctAnswer: 1
+    },
+    {
+        question: "What is the most bang for your buck?",
+        answers: [
+            "Musk's NeuroLink",
+            "1654 years for a PHD",
+            "CS Degree",
+            "Coding Bootcamp"
+        ],
+        correctAnswer: 3
+    
+    },
+    {
+        question: "Who said 'Never trust a computer you can't throw out a window'?",
+        answers: [
+            "Steve Irwin",
+            "Steve Jobs",
+            "Steve Wozniak",
+            "Steve O"
+        ],
+        correctAnswer: 2
+
+    },
+    {
+        question: "How sick was this quiz????",
+        answers: [
+            "Ehh",
+            "Sooooo sick bro",
+            "Not Sick",
+            "Get this right of prepare 4 hax"
         ],
         correctAnswer: 1
     }
