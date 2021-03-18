@@ -1,6 +1,9 @@
+/* the most beautiful stylings of all time */
+
 body {
     background-color: blanchedalmond;
 }
+
 #container {
     background-color: rgb(209, 168, 106);
     display: flex;
@@ -12,8 +15,6 @@ body {
     border: 30px double #d6ea96;
     height: 40vh;
 }
-
-
 
 .greeting {
     display: block;
@@ -52,6 +53,7 @@ body {
     font-family: 'PT Serif', serif;
 }
 
+/* stylings added from JS that change display of button based on if it is right or not. */
 .correct {
     background-color: darkgreen;
     color: #fff;
@@ -103,13 +105,19 @@ body {
     padding: 0 20px;
 }
 
+#hiscore {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    background-color: #d6ea96;
+}
+
 .hover-effect:hover {
     opacity: 0.9;
-    
     box-shadow: 0 0 10px rgb(220, 235, 23);
 }
 
-
+/* style that I add and remove from elements using JS so I can display specific things throughout the quiz. */
 .hide {
     display: none;
 }

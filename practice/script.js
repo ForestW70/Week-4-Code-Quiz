@@ -7,6 +7,7 @@ const timerValue = document.getElementById("timer");
 const intro = document.getElementById("greeting");
 const progressCont = document.getElementById("quizProgress")
 
+
 // setting up variables that will be tracked and used later on
 let index = 0;
 let score = 0;
@@ -15,9 +16,12 @@ let isCorrect = false;
 let interval;
 
 
-
+// click event for my start button.
 startBtn.addEventListener("click", startGame);
 
+
+// start game function. shows and hides elements that I want for when the game begins.
+// starts my interval by setting it equal to my timer function.
 function startGame() {
     intro.classList.add("hide");
     startBtn.classList.add("hide");
@@ -28,6 +32,24 @@ function startGame() {
 }
 
 
+// sets timer to decriment by 1 every 1000ms (above).
+// when displaying timer, set it to timer value if greater than 0, if it isnt, set timer to 0.
+// (functionality: stops timer from displaying negative values.)
+// if timer is less than or equal to 0, run highscore screen. stop timer from ticking in background.
+function timerFunk() {
+    timer--;
+    timerValue.innerText = timer > 0 ? timer : 0;
+    if (timer <= 0) {
+        createEndScreen();
+        clearInterval(interval);
+    }
+}
+
+
+// function to build question and answers. creates container divs and gives them appropriate classes.
+// sets my question to the question at index value (0 here) of my questions objecdt.
+// append containers, then run a for loop to itterate and create my answer buttons in a similar fashion.
+// created a click handeler for my answer grid continer.
 function createAnswers() {
     let questionEl = document.createElement("div");
     let answerGrid = document.createElement("div");
@@ -40,6 +62,8 @@ function createAnswers() {
     for (let i = 0; i < 4; i++) {
         let answerBtn = document.createElement("button")
         answerBtn.innerText = questions[index].answers[i];
+
+        // sets name of element equal to its i value when created. will be important when checking if correct.
         answerBtn.setAttribute("name", i);
         answerBtn.setAttribute("class", "btn");
         answerBtn.classList.add("hover-effect");
@@ -49,18 +73,16 @@ function createAnswers() {
     
 }
 
-function timerFunk() {
-    timer--;
-    timerValue.innerText = timer > 0 ? timer : 0;
-    if (timer <= 0) {
-        createEndScreen();
-        clearInterval(interval);
-    }
 
-}
-
+// function to handle how clicking answers work.
+// checks to see if clicked button's name corrosponds with its correct value in the questions object.
 function handleClick (e) {
     
+
+    // if target button's name is euqal to value of correct answer in it's question array, run "correct" script.
+    // (add class to button to display green, change isCorrect value, add 100 to score, disable selection of other answers.)
+    // if target it not equal, lose 5 time, set button to display red.
+    // (similar time function to ensure timer subtraction updates realtime).
     if (e.target.name == questions[index].correctAnswer) {
         e.target.classList.add("correct");
         isCorrect = true;
@@ -74,16 +96,19 @@ function handleClick (e) {
         timer -= 5; 
         e.target.classList.add("incorrect");
         timerValue.innerText = timer > 0 ? timer : 0;
-        isCorrect = false; 
     }
     
     
 }
 
 
-
+// click event for next button. used to cycle through question slides.
 nextBtn.addEventListener("click", setNextQuestion);
 
+
+// if index is about to enter position in questions that does not exist, run end screen function.
+// if not and isCorrect is true, clear the question container, incriment index, load create answers function using index value as argument.
+// reset isCorrect for next question.
 function setNextQuestion() {
     if (index + 1 === questions.length) {
         createEndScreen();
@@ -96,6 +121,10 @@ function setNextQuestion() {
     }
 }
 
+
+// function to display screen when game is over. clears question container. hides some elements.
+// create needed elements. assigns all values. display final messages. create input field for player. append all elements.
+// add click event for hiscore submission.
 function createEndScreen() {
     questionCont.innerHTML = '';
     nextBtn.classList.add("hide");
@@ -111,8 +140,7 @@ function createEndScreen() {
     endScreen.setAttribute("class", "end-screen");
     hiscoreLabel.setAttribute("for", "hiscore");
     hiscoreInput.setAttribute("type", "text");
-    hiscoreInput.setAttribute("id", "hiscore");
-    hiscoreInput.setAttribute("name", "hiscore");
+    hiscoreInput.setAttribute("id", "hiscoreName");
     submit.setAttribute("type", "submit");
     submit.setAttribute("value", "submit");
 
@@ -129,28 +157,30 @@ function createEndScreen() {
     endScreen.append(submit);
 
     submit.addEventListener("click", setHiscore);
-
 }
 
+
+// 
 function setHiscore() {
 
-    let currentHiscore = {
-        name: hiscoreInput.value.trim(),
-        hiscore: score
-    };
+    const highScore = JSON.parse(localStorage.getItem("currentHiscore"));
+    if (!highScore || score >= Number.parseInt(highScore.hiscore)) {
+        let currentHiscore = {
+            name: document.getElementById("hiscoreName").value,
+            hiscore: score
+        };
 
-    localStorage.setItem("highscore", JSON.stringify(currentHiscore));
-    let leaderBoard = JSON.parse(localStorage.getItem("currentHiscore"));
+        localStorage.setItem("currentHiscore", JSON.stringify(currentHiscore));
+        // let leaderBoard = JSON.parse(localStorage.getItem("currentHiscore"));
 
-    
-    document.getElementById("hiscore").innerHTML = `<h3>${leaderBoard.name}</h3><span>${leaderBoard.highscore}</span>`;
-    
+        document.getElementById("hiscore").innerHTML = `<h3>${currentHiscore.name}</h3><span>${currentHiscore.hiscore}</span>`;
+    }
 }
 
 
-
-
-
+// Qustions object where my quiz will pull all questions, asnwers, and correct answer values.
+// correctAnswer is set = to the right answers position in the answers array. the name of the buttons element created above helps us target the correct answer,
+// becuase the buttons will populate in linear way, it lines up value wise with this array.
 const questions = [
     {
         question: "What does the 'h' stand for in HTML?",
@@ -271,6 +301,7 @@ const questions = [
 
     },
     {
+        // you better get this one correct 🔫
         question: "How sick was this quiz????",
         answers: [
             "Ehh",
