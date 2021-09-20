@@ -52,8 +52,8 @@ function timerFunk() {
 // append containers, then run a for loop to itterate and create my answer buttons in a similar fashion.
 // created a click handeler for my answer grid continer.
 function createAnswers() {
-    let questionEl = document.createElement("div");
-    let answerGrid = document.createElement("div");
+    const questionEl = document.createElement("div");
+    const answerGrid = document.createElement("div");
     questionEl.setAttribute("class", "question");
     answerGrid.setAttribute("class", "answer-grid");
     questionEl.innerHTML = questions[index].question;
@@ -61,7 +61,7 @@ function createAnswers() {
     questionCont.append(answerGrid);
     
     for (let i = 0; i < 4; i++) {
-        let answerBtn = document.createElement("button")
+        const answerBtn = document.createElement("button")
         answerBtn.innerText = questions[index].answers[i];
 
         // sets name of element equal to its i value when created. will be important when checking if correct.
@@ -131,12 +131,12 @@ function createEndScreen() {
     nextBtn.classList.add("hide");
     progressCont.classList.add("hide");
 
-    let endScreen = document.createElement("div");
-    let finalMessage = document.createElement("h2");
-    let finalScore = document.createElement("span");
-    let hiscoreLabel = document.createElement("label");
-    let hiscoreInput = document.createElement("input");
-    let submit = document.createElement("input");
+    const endScreen = document.createElement("div");
+    const finalMessage = document.createElement("h2");
+    const finalScore = document.createElement("span");
+    const hiscoreLabel = document.createElement("label");
+    const hiscoreInput = document.createElement("input");
+    const submit = document.createElement("input");
 
     endScreen.setAttribute("class", "end-screen");
     hiscoreLabel.setAttribute("for", "hiscore");
@@ -184,8 +184,8 @@ function setHiscore() {
 // this will check on startup if there is anything logged to local storage, if so, show hiscore container and populate it with the current highscore values.
 if (localStorage.getItem("currentHiscore")) {
     hiscoreCont.setAttribute("class", "you-did-it");
-    let showName = JSON.parse(localStorage.getItem("currentHiscore")).name;
-    let showScore = JSON.parse(localStorage.getItem("currentHiscore")).score;
+    const showName = JSON.parse(localStorage.getItem("currentHiscore")).name;
+    const showScore = JSON.parse(localStorage.getItem("currentHiscore")).score;
     document.getElementById("hiscore").innerHTML = `<span>Current Hiscore:</span><h2>${showName}</h2><span>score: ${showScore}</span>`;
 }
 
@@ -319,7 +319,7 @@ const questions = [
             "Ehh",
             "Sooooo sick bro",
             "Not Sick",
-            "Get this right of prepare 4 hax"
+            "Get this right or prepare 4 hax"
         ],
         correctAnswer: 1
     }
