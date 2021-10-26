@@ -28,7 +28,7 @@ MIT - ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)(https
   3. JavaScript
 
 * # Project description:
-  Given a desire to test my coding knowledge, I created an app to quiz myself about coding topics using multiple-choice questions. You may also try and get the best time possible with an implemented hi-score feature. Please pretend that these questions are challenging and furthermore NO PEEKING!
+  Given a desire to test my coding knowledge, I created an app to quiz myself about coding topics using multiple-choice questions. You may also try and get the best score possible with an implemented hi-score feature. Please pretend that these questions are challenging and furthermore NO PEEKING!
 
 * # Usage instructions
   Test your coding knowledge
