@@ -3,6 +3,7 @@ MIT - ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)(https
 <!-- Original deployment date: March 18th, 2021 -->
 
 ## Table of Contents:
+- [This week's concepts](#this-weeks-concepts)
 - [Tech used](#tech-used)
 - [Project description](#project-description)
 - [Usage instructions](#usage-instructions)
@@ -15,13 +16,19 @@ MIT - ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)(https
 
 ### About This Project
 
+* # This weeks concepts:
+  1. Local storage
+  2. Conditional statements
+  3. JS interval/timeout
+  4. Array objects
+
 * # Tech used:
   1. HTML
   2. CSS
   3. JavaScript
 
 * # Project description:
-  Are you able to complete the worlds hardest coding quiz? To score with high marks, use your knowledge about types of code, code trivia, and general useless knowledge, becuase coming up with questions is hard! If you have done better than a previous session,  you can submit your highscore to display until you submit a new higher score.
+  Given a desire to test my coding knowledge, I created an app to quiz myself about coding topics using multiple-choice questions. You may also try and get the best time possible with an implemented hi-score feature. Please pretend that these questions are challenging and furthermore NO PEEKING!
 
 * # Usage instructions
   Test your coding knowledge
