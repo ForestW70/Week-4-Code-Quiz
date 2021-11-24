@@ -69,5 +69,5 @@ MIT - ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)(https
   - ![Active screen](./assets/images/quiz-in-progress.png)
 
 * Links:
-  - [Repo page](https://github.com/ForestW70/hw4codequiz)
-  - [Deployed page](https://forestw70.github.io/hw4codequiz/)
+  - [Repo page](https://github.com/ForestW70/Week-4-Code-Quiz)
+  - [Deployed page](https://forestw70.github.io/Week-4-Code-Quiz/)
